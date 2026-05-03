@@ -4,7 +4,9 @@ import handleCommand from './common/handleCommand.js';
 import middlewares from './middlewares/export.js';
 import { ms } from 'itty-time';
 import { connect } from 'mongoose';
+import validateEnv from './common/validateEnv.js';
 
+validateEnv();
 customizeLogger();
 
 const client = new Client({

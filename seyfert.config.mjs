@@ -9,7 +9,7 @@ export default config.bot({
         'MessageContent'
     ],
     locations: {
-        base: 'build',
+        base: 'build/src',
         events: 'events',
         commands: 'interactions/commands',
         components: 'interactions'
