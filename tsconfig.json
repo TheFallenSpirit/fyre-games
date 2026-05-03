@@ -10,18 +10,23 @@
         "resolveFullPaths": true
     },
     "compilerOptions": {
+        "types": [
+            "node"
+        ],
+        "paths": {
+            "@/*": ["./src/*"]
+        },
         "strict": true,
         "outDir": "build",
         "module": "NodeNext",
+        "rootDir": ".",
         "skipLibCheck": true,
         "noUnusedLocals": true,
         "esModuleInterop": true,
+        "noErrorTruncation": true,
         "noUnusedParameters": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "noUncheckedIndexedAccess": true,
-        "paths": {
-            "@/*": ["./src/*"]
-        }
+        "noUncheckedIndexedAccess": true
     }
 }
