@@ -2,9 +2,9 @@ import { getGuild } from '@/store/guild.js';
 import { colors, isInstalled } from '@fallencodes/seyfert-utils';
 import { createMiddleware } from 'seyfert';
 
-const defaultConfig = {
+export const defaultConfig = {
     color: colors.green,
-    prefix: '.'
+    prefix: '-'
 };
 
 export default createMiddleware<typeof defaultConfig>(async ({ next, context }) => {
