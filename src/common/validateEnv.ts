@@ -4,7 +4,7 @@ import { red } from 'seyfert/lib/common/index.js';
 export default function validateEnv() {
     const exampleEnv = readFileSync('.env.example').toString();
     const envKeys = exampleEnv.split('\n').map((key) => key.split('=').at(0))
-    .filter((key) => typeof key === 'string');
+    .filter((key) => typeof key === 'string').filter((key) => key.length > 0);
 
     for (const key of envKeys) {
         if (process.env[key]) continue;
