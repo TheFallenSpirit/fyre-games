@@ -12,6 +12,6 @@ export default class extends HandleCommand {
 
     resolveCommandFromContent = Yuna.resolver({
         client: this.client,
-        afterPrepare: () => this.client.logger.debug('Yuna resolver has successfully loaded.')
+        afterPrepare: () => this.client.logger.info('Yuna resolver has successfully loaded.')
     });
 };
