@@ -1,19 +1,22 @@
 import customizeLogger from '@fallencodes/seyfert-utils/logger';
 import { Client, DisabledCache, LimitedMemoryAdapter } from 'seyfert';
 import handleCommand from './common/handleCommand.js';
-import middlewares from './middlewares/export.js';
+import middlewares, { globalMiddlewares } from './middlewares/export.js';
 import { ms } from 'itty-time';
 import { connect } from 'mongoose';
 import validateEnv from './common/validateEnv.js';
+import { Redis } from 'ioredis';
 
 validateEnv();
 customizeLogger();
 
 const client = new Client({
     commands: { reply: () => true },
-    allowedMentions: { parse: ['users'], replied_user: false }
+    allowedMentions: { parse: ['users'], replied_user: false },
+    globalMiddlewares: Object.keys(globalMiddlewares) as (keyof typeof globalMiddlewares)[]
 });
 
+export const redis = new Redis(process.env.REDIS_URL ?? '');
 connect(process.env.MONGO_URL ?? '', { dbName: 'app' })
 .then(() => client.logger.info('Successfully connected to MongoDB.'))
 .catch(() => client.logger.fatal('Failed to connect to MongoDB!'));
