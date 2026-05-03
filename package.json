@@ -1,0 +1,29 @@
+{
+	"name": "fyre-games",
+	"type": "module",
+	"version": "0.0.1",
+	"license": "Apache-2.0",
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"build": "tsc",
+		"start": "node -r dotenv/config build/app.js"
+	},
+	"prettier": {
+		"tabWidth": 4,
+		"printWidth": 120,
+		"singleQuote": true,
+		"trailingComma": "none"
+	},
+	"dependencies": {
+		"@fallencodes/seyfert-utils": "^1.6.0",
+		"ioredis": "^5.10.1",
+		"mongoose": "^9.6.1",
+		"seyfert": "^4.3.0"
+	},
+	"devDependencies": {
+		"@types/node": "^25.6.0",
+		"typescript": "^6.0.3"
+	}
+}
