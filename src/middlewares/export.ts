@@ -1,4 +1,5 @@
 import config from './config.js';
+import fastFriendsGame from './fastFriendsGame.js';
 import guildConfig from './guildConfig.js';
 
 export const globalMiddlewares = {
@@ -7,5 +8,6 @@ export const globalMiddlewares = {
 
 export default {
     ...globalMiddlewares,
-    guildConfig
+    guildConfig,
+    fastFriendsGame
 };

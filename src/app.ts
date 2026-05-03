@@ -6,12 +6,13 @@ import { ms } from 'itty-time';
 import { connect } from 'mongoose';
 import validateEnv from './common/validateEnv.js';
 import { Redis } from 'ioredis';
-import { prefix } from './extras.js';
+import { context, prefix } from './extras.js';
 
 validateEnv();
 customizeLogger();
 
 const client = new Client({
+    context,
     commands: { reply: () => true, prefix },
     allowedMentions: { parse: ['users'], replied_user: false },
     globalMiddlewares: Object.keys(globalMiddlewares) as (keyof typeof globalMiddlewares)[]
