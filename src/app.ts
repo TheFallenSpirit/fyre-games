@@ -28,7 +28,8 @@ const adapter = new LimitedMemoryAdapter({
     role: { expire: 0 },
     guild: { expire: 0 },
     channel: { expire: 0 },
-    overwrite: { expire: 0 }
+    overwrite: { expire: 0 },
+    voice_state: { expire: ms('6 hours') }
 });
 
 const disabledCache: DisabledCache = {
@@ -36,7 +37,6 @@ const disabledCache: DisabledCache = {
     emojis: true,
     stickers: true,
     presences: true,
-    voiceStates: true,
     stageInstances: true
 };
 
