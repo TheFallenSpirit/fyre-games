@@ -1,7 +1,7 @@
 import customizeLogger from '@fallencodes/seyfert-utils/logger';
 import { Client, DisabledCache, LimitedMemoryAdapter } from 'seyfert';
 import handleCommand from './common/handleCommand.js';
-import middlewares, { globalMiddlewares } from './middlewares/export.js';
+import middlewares, { globalMiddlewares } from './middlewares/middlewares.js';
 import { ms } from 'itty-time';
 import { connect } from 'mongoose';
 import validateEnv from './common/validateEnv.js';

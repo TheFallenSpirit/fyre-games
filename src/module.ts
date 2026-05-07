@@ -1,5 +1,5 @@
 import { AnyContext, Client, ParseClient, ParseGlobalMiddlewares, ParseMiddlewares } from 'seyfert';
-import middlewares, { globalMiddlewares } from './middlewares/export.js';
+import middlewares, { globalMiddlewares } from './middlewares/middlewares.js';
 import { LangKey, LangProps } from './common/lang.js';
 
 declare module 'seyfert' {
