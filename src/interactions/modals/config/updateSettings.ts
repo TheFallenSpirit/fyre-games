@@ -4,7 +4,7 @@ import { Middlewares, ModalCommand, ModalContext } from 'seyfert';
 import configPanel from '@/panels/config/config.js';
 import { getConfig } from '@/middlewares/config.js';
 
-@Middlewares(['guildConfig'])
+@Middlewares(['userLock', 'guildConfig'])
 export default class extends ModalCommand {
     customId = 'config.home.settings';
 

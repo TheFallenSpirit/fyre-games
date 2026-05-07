@@ -3,7 +3,7 @@ import { createModal, createTextInput } from '@fallencodes/seyfert-utils/compone
 import { ComponentCommand, ComponentContext, Middlewares } from 'seyfert';
 import { TextInputStyle } from 'seyfert/lib/types/index.js';
 
-@Middlewares(['guildConfig'])
+@Middlewares(['userLock', 'guildConfig'])
 export default class extends ComponentCommand {
     customId = 'config.home.settings';
     componentType = 'Button' as const;

@@ -2,7 +2,7 @@ import configPanel from '@/panels/config/config.js';
 import { s } from '@fallencodes/seyfert-utils';
 import { Attachment, Middlewares, ModalCommand, ModalContext } from 'seyfert';
 
-@Middlewares(['guildConfig'])
+@Middlewares(['userLock', 'guildConfig'])
 export default class extends ModalCommand {
     customId = 'config.home.branding';
 

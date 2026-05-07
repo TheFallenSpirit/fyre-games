@@ -1,7 +1,7 @@
 import configPanel from '@/panels/config/config.js';
 import { ComponentCommand, ComponentContext, Middlewares } from 'seyfert';
 
-@Middlewares(['guildConfig'])
+@Middlewares(['userLock', 'guildConfig'])
 export default class extends ComponentCommand {
     customId = 'config.switch-page';
     componentType = 'StringSelect' as const;

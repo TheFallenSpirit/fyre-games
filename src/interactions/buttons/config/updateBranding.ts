@@ -2,7 +2,7 @@ import { createFileUpload, createModal, createTextInput } from '@fallencodes/sey
 import { ComponentCommand, ComponentContext, Middlewares } from 'seyfert';
 import { TextInputStyle } from 'seyfert/lib/types/index.js';
 
-@Middlewares(['guildConfig'])
+@Middlewares(['userLock', 'guildConfig'])
 export default class extends ComponentCommand {
     customId = 'config.home.branding';
     componentType = 'Button' as const;
