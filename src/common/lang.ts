@@ -13,6 +13,8 @@ export default (client: UsingClient, key: LangKey, props: Record<string, any> = 
 };
 
 const lines = {
+    selfNotMember: "Hold up! {self} wasn't able to fetch it's info in {guild}.",
     guildUnavailable: "Hold up! {self} wasn't able to fetch this server's info, please try again later.",
+    channelUnavailable: "Hold up! {self} wasn't able to fetch this channel's info, please try again.",
     voiceBasedChannelOnly: 'Hold up! This command can only be used in voice or stage channels.'
 };
