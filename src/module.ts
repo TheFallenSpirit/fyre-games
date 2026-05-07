@@ -1,11 +1,15 @@
-import { AnyContext, Client, ParseClient, ParseGlobalMiddlewares, ParseMiddlewares } from 'seyfert';
+import { AnyContext, ParseClient, ParseGlobalMiddlewares, ParseMiddlewares } from 'seyfert';
 import middlewares, { globalMiddlewares } from './middlewares/middlewares.js';
 import { LangKey, LangProps } from './common/lang.js';
+import FyreClient from './client.js';
 
 declare module 'seyfert' {
-    interface UsingClient extends ParseClient<Client<true>> {}
     interface GlobalMetadata extends ParseGlobalMiddlewares<typeof globalMiddlewares> {}
     interface RegisteredMiddlewares extends ParseMiddlewares<typeof middlewares> {}
+
+    interface UsingClient extends ParseClient<FyreClient> {
+        lang: (key: LangKey, props?: LangProps) => string;
+    }
 
     interface ExtendContext {
         replyWith: (context: AnyContext, key: LangKey, props?: LangProps) => void;

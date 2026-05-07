@@ -1,5 +1,5 @@
 import customizeLogger from '@fallencodes/seyfert-utils/logger';
-import { Client, DisabledCache, LimitedMemoryAdapter } from 'seyfert';
+import { DisabledCache, LimitedMemoryAdapter } from 'seyfert';
 import handleCommand from './common/handleCommand.js';
 import middlewares, { globalMiddlewares } from './middlewares/middlewares.js';
 import { ms } from 'itty-time';
@@ -7,11 +7,12 @@ import { connect } from 'mongoose';
 import validateEnv from './common/validateEnv.js';
 import { Redis } from 'ioredis';
 import { context, prefix } from './extras.js';
+import FyreClient from './client.js';
 
 validateEnv();
 customizeLogger();
 
-const client = new Client({
+const client = new FyreClient({
     context,
     commands: { reply: () => true, prefix },
     allowedMentions: { parse: ['users'], replied_user: false },
