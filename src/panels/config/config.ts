@@ -1,15 +1,17 @@
-import { createPanel } from '@/common/panel.js';
+import { AnyContextWithGuildConfig, createPanel } from '@/common/panel.js';
 import home from './home.js';
-import { AnyContext, Collection } from 'seyfert';
+import { Collection } from 'seyfert';
 import { createStringSelect } from '@fallencodes/seyfert-utils/components/message';
 import { MessageFlags } from 'seyfert/lib/types/index.js';
 import { ComponentInteractionMessageUpdate } from 'seyfert/lib/common/index.js';
+import roleplay from './roleplay.js';
 
 const panel = createPanel<true>({
-    home
+    home,
+    roleplay
 });
 
-export default async (context: AnyContext, pageId: string = 'home'): Promise<ComponentInteractionMessageUpdate> => {
+export default async (context: AnyContextWithGuildConfig, pageId: string = 'home'): Promise<ComponentInteractionMessageUpdate> => {
     const guild = await context.guild();
     if (!guild) return ({ flags: MessageFlags.Ephemeral, content: context.client.lang('guildUnavailable') });
 

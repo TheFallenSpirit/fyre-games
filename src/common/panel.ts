@@ -1,4 +1,4 @@
-import { AnyContext, Guild as SeyfertGuild, TopLevelBuilders, UsingClient } from 'seyfert';
+import { CommandContext, ComponentContext, ModalContext, Guild as SeyfertGuild, TopLevelBuilders, UsingClient } from 'seyfert';
 import { MessageFlags } from 'seyfert/lib/types/index.js';
 
 export function createPanel<InGuild extends boolean>(data: Record<string, PanelPage<InGuild>>) {
@@ -7,8 +7,11 @@ export function createPanel<InGuild extends boolean>(data: Record<string, PanelP
 
 export interface PanelPage<InGuild extends boolean> {
     title: string;
-    emoji?: (context: AnyContext) => string;
-    render: (context: AnyContext, guild: InGuild extends true ? Guild : Guild | undefined) => Promise<RenderProps>;
+    emoji?: (context: InGuild extends true ? AnyContextWithGuildConfig : AnyContext) => string;
+    render: (
+        context: InGuild extends true ? AnyContextWithGuildConfig : AnyContext,
+        guild: InGuild extends true ? Guild : Guild | undefined
+    ) => Promise<RenderProps>;
     description: (client: UsingClient, guild: InGuild extends true ? Guild : Guild | undefined) => string;
 }
 
@@ -19,3 +22,13 @@ interface RenderProps {
 }
 
 type Guild = SeyfertGuild<'api' | 'cached'>
+
+type AnyContext =
+| CommandContext
+| ComponentContext
+| ModalContext
+
+export type AnyContextWithGuildConfig =
+| CommandContext<{}, 'guildConfig'>
+| ComponentContext<any, 'guildConfig'>
+| ModalContext<'guildConfig'>
