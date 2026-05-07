@@ -1,7 +1,7 @@
 import { GuildI } from '@/models/Guild.js';
 import { getGuild } from '@/store/guild.js';
 import { colors, isInstalled } from '@fallencodes/seyfert-utils';
-import { createMiddleware } from 'seyfert';
+import { AnyContext, createMiddleware } from 'seyfert';
 
 export const defaultConfig = {
     color: colors.green,
@@ -19,3 +19,11 @@ export default createMiddleware<typeof defaultConfig>(async ({ next, context }) 
         username: context.client.me.username
     });
 });
+
+export function getConfig(context: AnyContext, guildConfig: GuildI): typeof defaultConfig {
+    return ({
+        color: guildConfig.defaultColor ?? defaultConfig.color,
+        prefix: guildConfig.prefix ?? defaultConfig.prefix,
+        username: context.client.me.username
+    });
+};

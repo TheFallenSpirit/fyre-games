@@ -1,4 +1,5 @@
 import { AnyContext, Guild as SeyfertGuild, TopLevelBuilders, UsingClient } from 'seyfert';
+import { MessageFlags } from 'seyfert/lib/types/index.js';
 
 export function createPanel<InGuild extends boolean>(data: Record<string, PanelPage<InGuild>>) {
     return new Map<string, PanelPage<InGuild>>(Object.entries(data));
@@ -12,7 +13,9 @@ export interface PanelPage<InGuild extends boolean> {
 }
 
 interface RenderProps {
-    components: TopLevelBuilders[];
+    flags?: MessageFlags;
+    content?: string | null;
+    components?: TopLevelBuilders[];
 }
 
 type Guild = SeyfertGuild<'api' | 'cached'>

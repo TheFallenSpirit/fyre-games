@@ -13,6 +13,7 @@ export default (client: UsingClient, key: LangKey, props: Record<string, any> = 
 };
 
 const lines = {
+    invalidHex: `Hold up! The provided hex code "{hex}" isn't valid (format: #ff0000).`,
     selfNotMember: "Hold up! {self} wasn't able to fetch it's info in {guild}.",
     guildUnavailable: "Hold up! {self} wasn't able to fetch this server's info, please try again later.",
     channelUnavailable: "Hold up! {self} wasn't able to fetch this channel's info, please try again.",

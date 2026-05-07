@@ -4,11 +4,9 @@ import { AnyContext, Collection } from 'seyfert';
 import { createStringSelect } from '@fallencodes/seyfert-utils/components/message';
 import { MessageFlags } from 'seyfert/lib/types/index.js';
 import { ComponentInteractionMessageUpdate } from 'seyfert/lib/common/index.js';
-import branding from './branding.js';
 
 const panel = createPanel<true>({
-    home,
-    branding
+    home
 });
 
 export default async (context: AnyContext, pageId: string = 'home'): Promise<ComponentInteractionMessageUpdate> => {
@@ -29,5 +27,9 @@ export default async (context: AnyContext, pageId: string = 'home'): Promise<Com
     });
 
     const options = await pages.get(pageId)!.render(context, guild);
-    return ({ ...options, flags: MessageFlags.IsComponentsV2, components: [...options.components, selectMenu] });
+
+    return ({
+        ...options,
+        components: [...options.components ?? [], selectMenu]
+    });
 };

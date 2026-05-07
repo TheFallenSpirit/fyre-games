@@ -12,7 +12,8 @@ export default {
 
         const headerLines = [
             `### Branding Config • ${s(guild.name)}\n`,
-            `Customize how ${context.client.me.username} appears in ${s(guild.name)}.`
+            `Customize how ${context.client.me.username} appears in ${s(guild.name)}.\n`,
+            `Use the button below to update ${context.client.me.username}'s branding in this server.`
         ];
 
         const lines = [

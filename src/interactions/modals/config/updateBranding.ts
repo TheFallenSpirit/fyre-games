@@ -4,7 +4,7 @@ import { Attachment, Middlewares, ModalCommand, ModalContext } from 'seyfert';
 
 @Middlewares(['guildConfig'])
 export default class extends ModalCommand {
-    customId = 'config.branding.update';
+    customId = 'config.home.branding';
 
     run = async (context: ModalContext<'guildConfig'>) => {
         const guild = await context.guild();
@@ -42,8 +42,14 @@ export default class extends ModalCommand {
         const channel = await context.channel();
         if (!channel.isGuildTextable()) return context.replyWith(context, 'channelUnavailable');
 
-        await channel.messages.edit(context.customId.split(':').at(1)!, { ...(await configPanel(context, 'branding')) });
-        await context.editOrReply({ content: `Successfully updated ${me}'s branding in ${s(guild.name)}.` });
+        await channel.messages.edit(
+            context.customId.split(':').at(1)!,
+            { ...(await configPanel(context, 'home')) }
+        );
+
+        await context.editOrReply({
+            content: `Successfully updated ${context.client.me.username}'s branding in ${s(guild.name)}.`
+        });
     };
 };
 
