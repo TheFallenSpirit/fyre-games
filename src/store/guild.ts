@@ -16,13 +16,6 @@ export async function getGuild(guildId: string): Promise<GuildI | undefined> {
     return guildObject;
 };
 
-export async function createGuild(guildId: string): Promise<GuildI> {
-    const guild = await Guild.create({ guildId });
-    const guildObject = guild.toObject();
-    await cacheGuild(guildObject);
-    return guildObject;
-};
-
 export async function updateGuild(guildId: string, query: UpdateQuery<GuildI>): Promise<GuildI> {
     const guild = await Guild.findOneAndUpdate({ guildId }, query, { returnDocument: 'after' });
     if (!guild) throw new Error(`The specified guild wasn't found -- updateGuild ${guildId}`);
@@ -31,6 +24,6 @@ export async function updateGuild(guildId: string, query: UpdateQuery<GuildI>): 
     return guildObject;
 };
 
-async function cacheGuild(guild: GuildI) {
+export async function cacheGuild(guild: GuildI) {
     await redis.set(`fg_guild:${guild.guildId}`, JSON.stringify(guild, replacer), 'EX', seconds('3 days'));
 };
