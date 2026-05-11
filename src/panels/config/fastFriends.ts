@@ -11,7 +11,7 @@ export default ({
         const fastFriendsConfig = context.metadata.guildConfig.fastFriends;
 
         const headerLines = [
-            `### Fast Friends Config - ${s(guild.name)}\n`,
+            `### Fast Friends Config • ${s(guild.name)}\n`,
             `Customize the fast friends module in your server.`
         ];
 

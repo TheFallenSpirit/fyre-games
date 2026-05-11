@@ -39,16 +39,12 @@ export default class extends ModalCommand {
             });
         };
 
-        const channel = await context.channel();
-        if (!channel.isGuildTextable()) return context.replyWith(context, 'channelUnavailable');
-
-        await channel.messages.edit(
-            context.customId.split(':').at(1)!,
-            { ...(await configPanel(context, 'home')) }
-        );
+        await context.interaction.message?.edit({
+            ...(await configPanel(context, 'home'))
+        });
 
         await context.editOrReply({
-            content: `Successfully updated ${context.client.me.username}'s branding in ${s(guild.name)}.`
+            content: `Successfully updated ${s(guild.name)}'s ${context.client.me.username} branding.`
         });
     };
 };

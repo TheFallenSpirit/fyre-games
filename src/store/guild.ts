@@ -3,6 +3,7 @@ import Guild, { GuildI } from '@/models/Guild.js';
 import { replacer, reviver } from '@fallencodes/seyfert-utils';
 import { seconds } from 'itty-time';
 import { UpdateQuery } from 'mongoose';
+import { transformUndefinedToUnset } from './index.js';
 
 export async function getGuild(guildId: string): Promise<GuildI | undefined> {
     const cachedGuild = await redis.get(`fg_guild:${guildId}`);
@@ -16,7 +17,8 @@ export async function getGuild(guildId: string): Promise<GuildI | undefined> {
     return guildObject;
 };
 
-export async function updateGuild(guildId: string, query: UpdateQuery<GuildI>): Promise<GuildI> {
+export async function updateGuild(guildId: string, query: UpdateQuery<GuildI>, transformQuery?: boolean): Promise<GuildI> {
+    if (transformQuery === true) query = transformUndefinedToUnset<GuildI>(query);
     const guild = await Guild.findOneAndUpdate({ guildId }, query, { returnDocument: 'after' });
     if (!guild) throw new Error(`The specified guild wasn't found -- updateGuild ${guildId}`);
     const guildObject = guild.toObject();

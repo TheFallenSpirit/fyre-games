@@ -22,14 +22,12 @@ export default class extends ModalCommand {
             { $set: { prefix, defaultColor: parseInt(accentColor.replace('#', '0x')) } }
         );
 
-        const channel = await context.channel();
-        if (!channel.isGuildTextable()) return context.replyWith(context, 'channelUnavailable');
+        context.globalMetadata.c = getConfig(
+            context,
+            context.metadata.guildConfig
+        );
 
-        context.globalMetadata.c = getConfig(context, context.metadata.guildConfig);
-        await channel.messages.edit(context.customId.split(':').at(1)!, { ...(await configPanel(context, 'home')) });
-
-        await context.editOrReply({
-            content: `Successfully updated ${context.client.me.username}'s general settings in ${s(guild.name)}.`
-        });
+        await context.interaction.message?.edit({ ...(await configPanel(context, 'home')) });
+        await context.editOrReply({ content: `Successfully updated ${s(guild.name)}'s general settings.` });
     };
 };
