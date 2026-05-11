@@ -38,7 +38,7 @@ const options = {
 @Middlewares(['fastFriendsGame'])
 
 export default class extends SubCommand {
-    run = async (context: CommandContext<typeof options>) => {
+    run = async (context: CommandContext<typeof options, 'guildConfig'>) => {
         const channel = await context.channel();
         const memberIds = await redis.smembers(`fg_ff_members:${channel.id}`);
 
@@ -67,9 +67,15 @@ export default class extends SubCommand {
         let channelIndex = 1;
 
         for await (const pair of pairs) {
+            let nameFormat = 'Fast Friends Pair {number}';
+
+            if (context.metadata.guildConfig.fastFriends?.defaultPairChannelNameFormat) {
+                nameFormat = context.metadata.guildConfig.fastFriends.defaultPairChannelNameFormat;
+            };
+
             const pairChannel = await guild.channels.create({
                 type: ChannelType.GuildVoice,
-                name: `Fast Friends Pair ${channelIndex}`,
+                name: nameFormat.replace('{number}', channelIndex.toString()),
                 parent_id: context.options.category.id,
                 permission_overwrites: [
                     { id: guild.id, type: OverwriteType.Role, deny: everyonePermissions.bits.toString() },

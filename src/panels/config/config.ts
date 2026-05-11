@@ -5,10 +5,12 @@ import { createStringSelect } from '@fallencodes/seyfert-utils/components/messag
 import { MessageFlags } from 'seyfert/lib/types/index.js';
 import { ComponentInteractionMessageUpdate } from 'seyfert/lib/common/index.js';
 import roleplay from './roleplay.js';
+import fastFriends from './fastFriends.js';
 
 const panel = createPanel<true>({
     home,
-    roleplay
+    roleplay,
+    fastFriends
 });
 
 export default async (context: AnyContextWithGuildConfig, pageId: string = 'home'): Promise<ComponentInteractionMessageUpdate> => {
