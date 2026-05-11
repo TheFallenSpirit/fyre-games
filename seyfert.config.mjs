@@ -6,7 +6,8 @@ export default config.bot({
         'Guilds',
         'GuildMembers',
         'GuildMessages',
-        'MessageContent'
+        'MessageContent',
+        'GuildVoiceStates'
     ],
     locations: {
         base: 'build/src',

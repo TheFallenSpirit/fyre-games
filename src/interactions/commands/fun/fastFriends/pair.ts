@@ -76,8 +76,8 @@ export default class extends SubCommand {
                     ...pair.map((id) => ({ id, type: OverwriteType.Member, allow: pairPermissions.bits.toString() }))
                 ]
             }).catch(() => {});
-            if (!pairChannel) continue;
 
+            if (!pairChannel) continue;
             for await (const userId of pair) await guild.members.edit(
                 userId,
                 { channel_id: pairChannel.id },
@@ -96,6 +96,7 @@ export default class extends SubCommand {
                 );
             }, time * 60_000);
 
+            channelIndex++;
             await wait(1250);
         };
 

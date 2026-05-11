@@ -28,7 +28,7 @@ export default class extends Command {
         ];
 
         const container = createContainer([
-            createTextDisplay(`### 🌐 Ping - ${context.client.me.username}\n`),
+            createTextDisplay(`### 🌐 Ping • ${context.client.me.username}\n`),
             createSeparator(1, false),
             createTextDisplay(lines.join(''))
         ], { color: context.globalMetadata.c.color });
