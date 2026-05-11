@@ -8,7 +8,7 @@ export default ({
     title: 'Fast Friends',
     description: (_client, guild) => `View and update ${guild.name}'s fast friends settings.`,
     render: async (context, guild) => {
-        const guildConfig = context.metadata.guildConfig;
+        const fastFriendsConfig = context.metadata.guildConfig.fastFriends;
 
         const headerLines = [
             `### Fast Friends Config - ${s(guild.name)}\n`,
@@ -17,7 +17,7 @@ export default ({
 
         const lines = [
             `**Pair Channel Name Format**: `,
-            `\`${guildConfig.fastFriends?.defaultPairChannelNameFormat ?? 'Fast Friends Pair {number}'}\``
+            `\`${fastFriendsConfig?.defaultPairChannelNameFormat ?? 'Fast Friends Pair {number}'}\``
         ];
 
         const container = createContainer([

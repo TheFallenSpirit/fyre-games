@@ -32,7 +32,7 @@ export default class extends ModalCommand {
         );
         
         await context.editOrReply({
-            content: `Successfully updated ${context.client.me.username}'s fast friends settings in ${s(guild.name)}.`
+            content: `Successfully updated ${s(guild.name)}'s fast friends settings.`
         });
     };
 };
