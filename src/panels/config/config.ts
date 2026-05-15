@@ -6,10 +6,12 @@ import { MessageFlags } from 'seyfert/lib/types/index.js';
 import { ComponentInteractionMessageUpdate } from 'seyfert/lib/common/index.js';
 import roleplay from './roleplay.js';
 import fastFriends from './fastFriends.js';
+import counting from './counting.js';
 
 const panel = createPanel<true>({
     home,
     roleplay,
+    counting,
     fastFriends
 });
 
@@ -25,8 +27,7 @@ export default async (context: AnyContextWithGuildConfig, pageId: string = 'home
             value: key,
             label: page.title,
             emoji: page.emoji?.(context),
-            default: key === pageId,
-            description: page.description(context.client, guild)
+            default: key === pageId
         }))
     });
 
@@ -34,6 +35,7 @@ export default async (context: AnyContextWithGuildConfig, pageId: string = 'home
 
     return ({
         ...options,
-        components: [...options.components ?? [], selectMenu]
+        components: [...options.components ?? [], selectMenu],
+        allowed_mentions: { parse: [] }
     });
 };

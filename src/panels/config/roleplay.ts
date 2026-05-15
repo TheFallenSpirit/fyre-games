@@ -4,12 +4,10 @@ import { createContainer, createSeparator, createTextDisplay, createTextSection 
 
 export default ({
     title: 'Roleplay',
-    description: (_client, guild) => `View ${guild.name}'s roleplay settings and whip lines.`,
     render: async (context, guild) => {
         const headerLines = [
-            `### Roleplay Config • ${s(guild.name)}\n`,
-            `Customize the roleplay system in your server. `,
-            `Here you can view this server's roleplay whip lines.`
+            `### Roleplay Settings • ${s(guild.name)}\n`,
+            `On this page you can view ${context.client.me.username}'s roleplay whip lines in your server.`
         ];
 
         const lines = [

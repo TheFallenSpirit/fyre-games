@@ -1,31 +1,29 @@
 import { PanelPage } from '@/common/panel.js';
-import { s } from '@fallencodes/seyfert-utils';
+import { numberToHex, s } from '@fallencodes/seyfert-utils';
 import { createContainer, createTextDisplay, createSeparator, createTextSection, createActionRow, createButton } from '@fallencodes/seyfert-utils/components/message';
 import { Button } from 'seyfert';
 import { ButtonStyle, MessageFlags } from 'seyfert/lib/types/index.js';
 
 export default ({
     title: 'Home',
-    description: (client, guild) => `The home page of your ${client.me.username} config in ${guild.name}.`,
     render: async (context, guild) => {
         const me = await context.me();
         if (!me) return ({ content: context.client.lang('selfNotMember', { guild: guild.name }) });
 
         const headerLines = [
-            `### Server Config • ${s(guild.name)}\n`,
-            `Welcome to your ${context.client.me.username} config for ${s(guild.name)}. `,
-            `Here you can update this server's basic settings.`
+            `### General Settings • ${s(guild.name)}\n`,
+            `On this page you can configure ${context.client.me.username}'s `,
+            `general settings and branding in your server.`
         ];
 
         const settingsLines = [
             `**Prefix**: \`${context.globalMetadata.c.prefix}\`\n`,
-            `**Accent Color**: \`#${context.globalMetadata.c.color.toString(16).padStart(6, '0')}\``
+            `**Accent Color**: \`#${numberToHex(context.globalMetadata.c.color)}\``
         ];
 
         const brandingLines = [
-            `### Branding Config\n`,
-            `Customize how ${context.client.me.username} appears in this server. `,
-            `Here you can update ${context.client.me.username}'s nickname, bio, avatar, and banner here.`
+            `### Branding Settings • ${s(context.client.me.username)}\n`,
+            `Here you can update ${context.client.me.username}'s nickname, bio, avatar, and banner in this server.`
         ];
 
         const container = createContainer([

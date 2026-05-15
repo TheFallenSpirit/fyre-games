@@ -12,7 +12,7 @@ export interface PanelPage<InGuild extends boolean> {
         context: InGuild extends true ? AnyContextWithGuildConfig : AnyContext,
         guild: InGuild extends true ? Guild : Guild | undefined
     ) => Promise<RenderProps>;
-    description: (client: UsingClient, guild: InGuild extends true ? Guild : Guild | undefined) => string;
+    description?: (client: UsingClient, guild: InGuild extends true ? Guild : Guild | undefined) => string;
 }
 
 interface RenderProps {

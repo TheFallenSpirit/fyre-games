@@ -6,13 +6,12 @@ import { ButtonStyle } from 'seyfert/lib/types/index.js';
 
 export default ({
     title: 'Fast Friends',
-    description: (_client, guild) => `View and update ${guild.name}'s fast friends settings.`,
     render: async (context, guild) => {
         const fastFriendsConfig = context.metadata.guildConfig.fastFriends;
 
         const headerLines = [
             `### Fast Friends Config • ${s(guild.name)}\n`,
-            `Customize the fast friends module in your server.`
+            `On this page you can configure ${context.client.me.username}'s fast friends module in your server.`
         ];
 
         const lines = [
