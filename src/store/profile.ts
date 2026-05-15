@@ -25,6 +25,18 @@ export async function updateProfile(guildId: string, userId: string, query: Upda
     return profileObject;
 };
 
+export async function getOrCreateProfile(guildId: string, userId: string): Promise<ProfileI> {
+    let profile = await getProfile(guildId, userId);
+    
+    if (!profile) {
+        const newProfile = await Profile.create({ guildId, userId });
+        profile = newProfile.toObject();
+        await cacheProfile(profile);
+    };
+
+    return profile;
+};
+
 export async function cacheProfile(profile: ProfileI) {
     await redis.set(
         `fg_profile:${profile.guildId}:${profile.userId}`,
