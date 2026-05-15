@@ -8,13 +8,14 @@ import validateEnv from './common/validateEnv.js';
 import { Redis } from 'ioredis';
 import { context, prefix } from './extras.js';
 import FyreClient from './client.js';
+import commandDefaults from './common/defaults/command.js';
 
 validateEnv();
 customizeLogger();
 
 const client = new FyreClient({
     context,
-    commands: { reply: () => true, prefix },
+    commands: { reply: () => true, prefix, defaults: commandDefaults },
     allowedMentions: { parse: ['users'], replied_user: false },
     globalMiddlewares: Object.keys(globalMiddlewares) as (keyof typeof globalMiddlewares)[]
 });

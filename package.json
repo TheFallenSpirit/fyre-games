@@ -20,7 +20,8 @@
 		"trailingComma": "none"
 	},
 	"dependencies": {
-		"@fallencodes/seyfert-utils": "^1.6.0",
+		"@fallencodes/seyfert-utils": "^1.8.0",
+		"change-case": "^5.4.4",
 		"dotenv": "^17.4.2",
 		"ioredis": "^5.10.1",
 		"itty-time": "^2.0.2",

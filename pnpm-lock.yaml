@@ -9,8 +9,11 @@ importers:
   .:
     dependencies:
       '@fallencodes/seyfert-utils':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.8.0
+        version: 1.8.0
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
@@ -42,8 +45,8 @@ importers:
 
 packages:
 
-  '@fallencodes/seyfert-utils@1.6.0':
-    resolution: {integrity: sha512-GmSgzVI3D3jfUvznZx9FBU3pkEOioObTYNvtCrHBxaV2GHNyD0dqrDfMXaZwRkbV5kb9aYieKy9/IxQGLT1QnQ==}
+  '@fallencodes/seyfert-utils@1.8.0':
+    resolution: {integrity: sha512-QdC7iA+OA1RvFWaxl+ywm+ot6zudUqFewDvCN+/lM/+AKcdx/0bxG4TqcyaVBoiBfXaVBEyGjXnF8DcQZu0vdg==}
     engines: {node: '>=22'}
 
   '@ioredis/commands@1.5.1':
@@ -371,7 +374,7 @@ packages:
 
 snapshots:
 
-  '@fallencodes/seyfert-utils@1.6.0':
+  '@fallencodes/seyfert-utils@1.8.0':
     dependencies:
       '@sapphire/snowflake': 3.5.5
       change-case: 5.4.4
