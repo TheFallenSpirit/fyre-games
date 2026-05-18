@@ -4,7 +4,6 @@ export default config.bot({
     token: process.env.DISCORD_TOKEN ?? '',
     intents: [
         'Guilds',
-        'GuildMembers',
         'GuildMessages',
         'MessageContent',
         'GuildVoiceStates'

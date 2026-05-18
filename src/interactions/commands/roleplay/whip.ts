@@ -1,4 +1,5 @@
 import { redis } from '@/app.js';
+import { updateProfile } from '@/store/profile.js';
 import { name, s } from '@fallencodes/seyfert-utils';
 import { Command, CommandContext, createUserOption, Declare, Middlewares, Options } from 'seyfert';
 import { MessageFlags } from 'seyfert/lib/types/index.js';
@@ -55,15 +56,22 @@ export default class extends Command {
             webhookData = { id: webhook.id, token: webhook.token! };
         };
 
-        await context.client.webhooks.writeMessage(webhookData.id, webhookData.token, {
-            body: {
-                content: whipLines[Math.floor(Math.random() * whipLines.length)],
-                username: name(user, 'display'),
-                avatar_url: user.avatarURL()
-            },
-            query: {
-                wait: true
-            }
-        });
+        try {
+            await context.client.webhooks.writeMessage(webhookData.id, webhookData.token, {
+                body: {
+                    content: whipLines[Math.floor(Math.random() * whipLines.length)],
+                    username: name(user, 'display'),
+                    avatar_url: user.avatarURL()
+                },
+                query: {
+                    wait: true
+                }
+            });
+
+            await updateProfile(guild.id, user.id, { $inc: { 'interactions.whips.received': 1 } });
+            await updateProfile(guild.id, context.author.id, { $inc: { 'interactions.whips.given': 1 } });
+        } catch (_error) {
+            await redis.del(`fg_webhook:${channel.id}`);
+        };
     };
 };
