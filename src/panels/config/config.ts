@@ -1,4 +1,4 @@
-import { AnyContextWithGuildConfig, createPanel } from '@/common/panel.js';
+import { AnyPanelContextWithGuildConfig, createPanel } from '@/common/panel.js';
 import home from './home.js';
 import { Collection } from 'seyfert';
 import { createStringSelect } from '@fallencodes/seyfert-utils/components/message';
@@ -15,11 +15,16 @@ const panel = createPanel<true>({
     fastFriends
 });
 
-export default async (context: AnyContextWithGuildConfig, pageId: string = 'home'): Promise<ComponentInteractionMessageUpdate> => {
+export default async (
+    context: AnyPanelContextWithGuildConfig,
+    pageId: string = 'home'
+): Promise<ComponentInteractionMessageUpdate> => {
     const guild = await context.guild();
     if (!guild) return ({ flags: MessageFlags.Ephemeral, content: context.client.lang('guildUnavailable') });
 
     const pages = new Collection(panel);
+    const options = await pages.get(pageId)!.render(context, guild);
+
     const selectMenu = createStringSelect({
         customId: `config.switch-page:${context.author.id}`,
         placeholder: 'Select a config page to view other settings.',
@@ -31,10 +36,12 @@ export default async (context: AnyContextWithGuildConfig, pageId: string = 'home
         }))
     });
 
-    const options = await pages.get(pageId)!.render(context, guild);
+    let flags = MessageFlags.IsComponentsV2;
+    if (options.flags) flags = flags | options.flags;
 
     return ({
         ...options,
+        flags,
         components: [...options.components ?? [], selectMenu],
         allowed_mentions: { parse: [] }
     });

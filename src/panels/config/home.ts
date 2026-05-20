@@ -2,7 +2,7 @@ import { PanelPage } from '@/common/panel.js';
 import { numberToHex, s } from '@fallencodes/seyfert-utils';
 import { createContainer, createTextDisplay, createSeparator, createTextSection, createActionRow, createButton } from '@fallencodes/seyfert-utils/components/message';
 import { Button } from 'seyfert';
-import { ButtonStyle, MessageFlags } from 'seyfert/lib/types/index.js';
+import { ButtonStyle } from 'seyfert/lib/types/index.js';
 
 export default ({
     title: 'Home',
@@ -48,9 +48,6 @@ export default ({
             }))
         ], { color: context.globalMetadata.c.color });
 
-        return ({
-            flags: MessageFlags.IsComponentsV2,
-            components: [container]
-        });
+        return ({ components: [container] });
     }
 }) satisfies PanelPage<true>;

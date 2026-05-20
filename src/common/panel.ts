@@ -7,9 +7,9 @@ export function createPanel<InGuild extends boolean>(data: Record<string, PanelP
 
 export interface PanelPage<InGuild extends boolean> {
     title: string;
-    emoji?: (context: InGuild extends true ? AnyContextWithGuildConfig : AnyContext) => string;
+    emoji?: (context: InGuild extends true ? AnyPanelContextWithGuildConfig : AnyPanelContext) => string;
     render: (
-        context: InGuild extends true ? AnyContextWithGuildConfig : AnyContext,
+        context: InGuild extends true ? AnyPanelContextWithGuildConfig : AnyPanelContext,
         guild: InGuild extends true ? Guild : Guild | undefined
     ) => Promise<RenderProps>;
     description?: (client: UsingClient, guild: InGuild extends true ? Guild : Guild | undefined) => string;
@@ -23,12 +23,12 @@ interface RenderProps {
 
 type Guild = SeyfertGuild<'api' | 'cached'>
 
-type AnyContext =
+export type AnyPanelContext =
 | CommandContext
 | ComponentContext
 | ModalContext
 
-export type AnyContextWithGuildConfig =
+export type AnyPanelContextWithGuildConfig =
 | CommandContext<{}, 'guildConfig'>
 | ComponentContext<any, 'guildConfig'>
 | ModalContext<'guildConfig'>
