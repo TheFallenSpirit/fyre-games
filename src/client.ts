@@ -3,6 +3,8 @@ import _lang, { LangKey, LangProps } from './common/lang.js';
 import { basename } from 'node:path';
 
 export default class FyreClient extends Client<true> {
+    public commandMentions: string[] = [];
+
     constructor(options: ClientOptions) {
         super(options);
         this.events.filter = (path) => !basename(path).startsWith('_');
@@ -11,5 +13,10 @@ export default class FyreClient extends Client<true> {
 
     public lang = (key: LangKey, props?: LangProps) => {
         return _lang(this, key, props);
+    };
+
+    public getCmd = (name: string) => {
+        const command = this.commandMentions.find((mention) => mention.replace('</', '').split(':').at(0) === name);
+        return command ?? `\`/${name}\``;
     };
 };
