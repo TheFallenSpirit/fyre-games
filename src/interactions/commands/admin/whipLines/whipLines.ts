@@ -7,7 +7,8 @@ import { AutocompleteInteraction, AutoLoad, Command, Declare, Middlewares } from
     aliases: ['wl'],
     contexts: ['Guild'],
     description: `Manage this server's roleplay whip lines.`,
-    defaultMemberPermissions: ['ManageGuild']
+    defaultMemberPermissions: ['ManageGuild'],
+    props: { category: 'admin' }
 })
 
 @AutoLoad()

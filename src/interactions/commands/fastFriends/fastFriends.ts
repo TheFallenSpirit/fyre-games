@@ -4,7 +4,8 @@ import { AutoLoad, Command, Declare, Middlewares } from 'seyfert';
     name: 'fast-friends',
     aliases: ['ff'],
     contexts: ['Guild'],
-    description: 'Join, leave, or manage a fast friends game.'
+    description: 'Join, leave, or manage a fast friends game.',
+    props: { category: 'games' }
 })
 
 @AutoLoad()

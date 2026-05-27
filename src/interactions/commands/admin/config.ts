@@ -7,7 +7,8 @@ import { Command, CommandContext, Declare, Middlewares } from 'seyfert';
     aliases: ['cfg'],
     contexts: ['Guild'],
     description: `View or update this server's ${defaultConfig.username} config.`,
-    defaultMemberPermissions: ['ManageGuild']
+    defaultMemberPermissions: ['ManageGuild'],
+    props: { category: 'admin' }
 })
 
 @Middlewares(['guildConfig'])

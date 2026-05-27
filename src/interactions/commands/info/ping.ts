@@ -5,7 +5,8 @@ import { MessageFlags } from 'seyfert/lib/types/index.js';
 @Declare({
     name: 'ping',
     contexts: ['Guild', 'BotDM', 'PrivateChannel'],
-    description: 'View my current gateway and application ping.'
+    description: 'View my current gateway and application ping.',
+    props: { category: 'utility' }
 })
 
 export default class extends Command {

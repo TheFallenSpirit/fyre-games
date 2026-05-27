@@ -16,7 +16,8 @@ const options = {
     name: 'whip',
     contexts: ['Guild'],
     description: 'Whip a member and make them say a random line.',
-    botPermissions: ['ManageChannels', 'ManageWebhooks']
+    botPermissions: ['ManageChannels', 'ManageWebhooks'],
+    props: { category: 'roleplay' }
 })
 
 @Options(options)

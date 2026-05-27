@@ -22,7 +22,8 @@ const options = {
 @Declare({
     name: 'emojis',
     description: `Change the counting emojis ${defaultConfig.username} will react with.`,
-    defaultMemberPermissions: ['ManageGuildExpressions']
+    defaultMemberPermissions: ['ManageGuildExpressions'],
+    props: { category: 'admin' }
 })
 
 @Group('set')

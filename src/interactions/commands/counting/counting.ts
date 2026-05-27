@@ -3,7 +3,8 @@ import { AutoLoad, Command, Declare, Groups, Middlewares } from 'seyfert';
 @Declare({
     name: 'counting',
     contexts: ['Guild'],
-    description: 'View the counting leaderboards or manage the counting module.'
+    description: 'View the counting leaderboards or manage the counting module.',
+    props: { category: 'games' }
 })
 
 @Groups({

@@ -7,6 +7,10 @@ declare module 'seyfert' {
     interface GlobalMetadata extends ParseGlobalMiddlewares<typeof globalMiddlewares> {}
     interface RegisteredMiddlewares extends ParseMiddlewares<typeof middlewares> {}
 
+    interface ExtraProps {
+        category?: 'games' | 'admin' | 'roleplay' | 'utility';
+    }
+
     interface UsingClient extends ParseClient<FyreClient> {
         lang: (key: LangKey, props?: LangProps) => string;
     }

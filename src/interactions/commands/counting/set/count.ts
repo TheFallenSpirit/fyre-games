@@ -13,7 +13,8 @@ const options = {
 @Declare({
     name: 'count',
     description: 'Set the current count in this server.',
-    defaultMemberPermissions: ['ManageGuild']
+    defaultMemberPermissions: ['ManageGuild'],
+    props: { category: 'admin' }
 })
 
 @Group('set')
