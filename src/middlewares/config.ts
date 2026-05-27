@@ -6,7 +6,8 @@ import { AnyContext, createMiddleware } from 'seyfert';
 export const defaultConfig = {
     color: colors.green,
     prefix: '-',
-    username: 'Fyre Games'
+    username: 'Fyre Games',
+    supportInvite: '[Fyre Hub](https://discord.gg/SNxqD4ujTF)'
 };
 
 export default createMiddleware<typeof defaultConfig>(async ({ next, context }) => {
@@ -14,6 +15,7 @@ export default createMiddleware<typeof defaultConfig>(async ({ next, context }) 
     if (isInstalled(context)) guildConfig = await getGuild(context.guildId!);
     
     next({
+        ...defaultConfig,
         color: guildConfig?.defaultColor ?? defaultConfig.color,
         prefix: guildConfig?.prefix ?? defaultConfig.prefix,
         username: context.client.me.username
@@ -22,6 +24,7 @@ export default createMiddleware<typeof defaultConfig>(async ({ next, context }) 
 
 export function getConfig(context: AnyContext, guildConfig: GuildI): typeof defaultConfig {
     return ({
+        ...defaultConfig,
         color: guildConfig.defaultColor ?? defaultConfig.color,
         prefix: guildConfig.prefix ?? defaultConfig.prefix,
         username: context.client.me.username
